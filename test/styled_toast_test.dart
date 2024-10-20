@@ -138,7 +138,7 @@ void main() {
       final testAppWidget = TestAppWidget(key: key);
       await tester.pumpWidget(testAppWidget);
       showToastWidget(
-        const Text('custom widget'),
+        builder: (context, theme) => const Text('custom widget'),
         duration: const Duration(seconds: 4),
         animDuration: const Duration(seconds: 2),
         position: StyledToastPosition.bottom,
@@ -172,7 +172,7 @@ void main() {
       final testAppWidget = TestAppWidget(key: key);
       await tester.pumpWidget(testAppWidget);
       showToastWidget(
-        const Text('custom widget'),
+        builder: (context, theme) => const Text('custom widget'),
         duration: const Duration(seconds: 4),
         animDuration: const Duration(seconds: 2),
         position: StyledToastPosition.bottom,

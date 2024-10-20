@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'custom_animation.dart';
 import 'custom_size_transition.dart';
 import 'styled_toast_enum.dart';
@@ -113,7 +114,7 @@ ToastFuture showToast(
   );
 
   return showToastWidget(
-    widget,
+    builder: (context, theme) => widget,
     context: context,
     duration: duration,
     animDuration: animDuration,
@@ -140,8 +141,7 @@ ToastFuture showToast(
 }
 
 /// Show custom content widget for toasting.
-ToastFuture showToastWidget(
-  Widget widget, {
+ToastFuture showToastWidget({
   BuildContext? context,
   Duration? duration,
   Duration? animDuration,
@@ -164,6 +164,8 @@ ToastFuture showToastWidget(
   CustomAnimationBuilder? reverseAnimBuilder,
   bool? isIgnoring,
   OnInitStateCallback? onInitState,
+  required Widget Function(BuildContext? context, StyledToastTheme? theme)
+      builder,
 }) {
   OverlayEntry entry;
   ToastFuture future;
@@ -250,7 +252,7 @@ ToastFuture showToastWidget(
         child: Directionality(
           textDirection: textDirection!,
           child: Material(
-            child: widget,
+            child: builder(context, toastTheme),
             color: Colors.transparent,
           ),
         ),

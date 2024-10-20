@@ -119,9 +119,9 @@ class _MyHomePageState extends State<MyHomePage>
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
           children: <Widget>[
-            TextField(
-              controller: TextEditingController(),
-            ),
+            // TextField(
+            //   controller: TextEditingController(),
+            // ),
             Container(
               margin: EdgeInsets.only(bottom: 10.0),
               padding: EdgeInsets.only(left: 15.0),
@@ -790,7 +790,9 @@ class _MyHomePageState extends State<MyHomePage>
                 'Custom toast content widget',
               ),
               onTap: () {
-                showToastWidget(BannerToastWidget.fail(msg: 'Request failed'),
+                showToastWidget(
+                    builder: (context, theme) =>
+                        BannerToastWidget.fail(msg: 'Request failed'),
                     context: context,
                     animation: StyledToastAnimation.slideFromLeft,
                     reverseAnimation: StyledToastAnimation.slideToLeft,
@@ -813,7 +815,7 @@ class _MyHomePageState extends State<MyHomePage>
               title: Text('Interactive toast'),
               onTap: () {
                 showToastWidget(
-                  Container(
+                  builder: (context, theme) => Container(
                     padding: EdgeInsets.symmetric(horizontal: 18.0),
                     margin: EdgeInsets.symmetric(horizontal: 50.0),
                     decoration: ShapeDecoration(
@@ -833,7 +835,7 @@ class _MyHomePageState extends State<MyHomePage>
                         IconButton(
                           onPressed: () {
                             dismissAllToast(showAnim: true);
-                            Navigator.push(context,
+                            Navigator.push(context!,
                                 MaterialPageRoute(builder: (context) {
                               return SecondPage();
                             }));
@@ -861,7 +863,9 @@ class _MyHomePageState extends State<MyHomePage>
                 'Custom toast content widget with icon convinient fail',
               ),
               onTap: () {
-                showToastWidget(IconToastWidget.fail(msg: 'failed'),
+                showToastWidget(
+                    builder: (context, theme) =>
+                        IconToastWidget.fail(msg: 'failed'),
                     context: context,
                     position: StyledToastPosition.center,
                     animation: StyledToastAnimation.scale,
@@ -880,7 +884,9 @@ class _MyHomePageState extends State<MyHomePage>
                 'Custom toast content widget with icon convenient success',
               ),
               onTap: () {
-                showToastWidget(IconToastWidget.success(msg: 'success'),
+                showToastWidget(
+                    builder: (context, theme) =>
+                        IconToastWidget.success(msg: 'success'),
                     context: context,
                     position: StyledToastPosition.center,
                     animation: StyledToastAnimation.scale,
@@ -957,8 +963,7 @@ class _SecondPageState extends State<SecondPage> {
                   );
                 },
                 style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith(getColor)),
+                    backgroundColor: WidgetStateProperty.resolveWith(getColor)),
                 child: Text(
                   'normal toast',
                   style: TextStyle(fontSize: 15.0, color: Colors.white),
