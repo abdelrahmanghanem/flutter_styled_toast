@@ -1,3 +1,5 @@
+## [2.2.2 null-safety]
+add theme for toast
 ## [2.2.1 null-safety]
 Fix warnings.
 
